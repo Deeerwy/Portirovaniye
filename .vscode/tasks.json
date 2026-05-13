@@ -1,0 +1,73 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build All",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "cd task1 && go build ./... && cd ../task2 && go build ./... && cd ../task3 && go build ./..."
+      ],
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": ["$go"]
+    },
+    {
+      "label": "Run Task 1 (Porting API)",
+      "type": "shell",
+      "command": "go",
+      "args": ["run", "."],
+      "options": { "cwd": "${workspaceFolder}/task1" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Run Task 2 (Safe Pointers)",
+      "type": "shell",
+      "command": "go",
+      "args": ["run", "."],
+      "options": { "cwd": "${workspaceFolder}/task2" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Run Task 2 (Race Detector)",
+      "type": "shell",
+      "command": "go",
+      "args": ["run", "-race", "."],
+      "options": { "cwd": "${workspaceFolder}/task2" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Run Task 3 (Parallel)",
+      "type": "shell",
+      "command": "go",
+      "args": ["run", "."],
+      "options": { "cwd": "${workspaceFolder}/task3" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Run Task 3 (Race Detector)",
+      "type": "shell",
+      "command": "go",
+      "args": ["run", "-race", "."],
+      "options": { "cwd": "${workspaceFolder}/task3" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Vet All (статический анализ)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "cd task1 && go vet ./... && cd ../task2 && go vet ./... && cd ../task3 && go vet ./... && echo '[OK] go vet — проблем не найдено'"
+      ],
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    }
+  ]
+}
