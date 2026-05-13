@@ -1,0 +1,1 @@
+Hello from MINIX 3 file
